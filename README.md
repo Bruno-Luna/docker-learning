@@ -35,3 +35,7 @@ Comandos:
 - `docker logs -f <container ID> ` : exibirá os logs de forma simultânea 
 
 - `docker stop <container ID{4}> ` : irá stopar a execução da imagem container. Basta inserir os 4 primeiros digitos do ID.
+
+- `docker ps -a` : irá listar todss as imagens containers em execução ou não.
+
+- `docker start ID{4}` : irá startar uma imagem container. Basta inserir os 4 primeiros digitos do ID.
