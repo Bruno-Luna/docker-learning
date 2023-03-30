@@ -36,6 +36,15 @@ Comandos:
 
 - `docker stop <container ID{4}> ` : irá stopar a execução da imagem container. Basta inserir os 4 primeiros digitos do ID.
 
-- `docker ps -a` : irá listar todss as imagens containers em execução ou não.
+- `docker ps -a` : irá listar todas as imagens containers em execução ou não.
 
 - `docker start ID{4}` : irá startar uma imagem container. Basta inserir os 4 primeiros digitos do ID.
+
+-- `docker container exec -it {ID}` + comando : o `exec` adentrará/executar algo em determinado container, `i` significa modo interativo e `t` e por terminal 
+
+`docker run -d -p 80:80 docker/getting-started` :  irá rodar em determinada porta, porém em modo background
+
+`docker run -ti -p 80:80 docker/getting-started` :  irá rodar em determinada porta, porém em terminal e interativo, ou seja tudo que acontecer no container, será exibido no terminal de forma simultanea. 
+`Ao clicar CTRL + D` o container será morto.
+
+
