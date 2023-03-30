@@ -1,49 +1,44 @@
-# docker-learning
+# Docker Getting Started Tutorial
 
+This tutorial was written with the intent of helping folks get up and running
+with containers and is designed to work with Docker Desktop. While not going too much 
+into depth, it covers the following topics:
 
-## Docker
+- Running your first container
+- Building containers
+- Learning what containers are
+- Running and removing containers
+- Using volumes to persist data
+- Using bind mounts to support development
+- Using container networking to support multi-container applications
+- Using Docker Compose to simplify the definition and sharing of applications
+- Using image layer caching to speed up builds and reduce push/pull size
+- Using multi-stage builds to separate build-time and runtime dependencies
 
-O que é um container?
+## Getting Started
 
-Isolamento. Container nada mais é que isolar os recursos
+If you wish to run the tutorial, you can use the following command after installing Docker Desktop:
 
-* Há diferenças entre uma VM e um container, sendo:
+```bash
+docker run -d -p 80:80 docker/getting-started
+```
 
-VM -> precisa por si de um SO para que tal aplicação possa rodas
+Once it has started, you can open your browser to [http://localhost](http://localhost).
 
-Container -> roda tal aplicação, sem a necessidade de um SO inserida no container.
+## Development
 
-O que é o Docker ?
+This project has a `docker-compose.yml` file, which will start the mkdocs application on your
+local machine and help you see changes instantly.
 
-O Docker é um software de código aberto usado para implantar aplicativos dentro de containers virtuais. A conteinerização permite que vários aplicativos funcionem em diferentes ambientes complexos. 
+```bash
+docker compose up
+```
 
-O que é uma imagem de container?
+## Contributing
 
-Imagem de container é a imagem(aplicação configurada/pronta) parada, no ato de execução tornar-se-á um container.
+If you find typos or other issues with the tutorial, feel free to create a PR and suggest fixes!
 
-O que são namespace cgroup ?
-
-Namespace -> Basicamente, os namespaces são responsáveis por gerar o isolamento de grupos de processos em seu nível lógico, como o gerenciamento de usuários, rede, etc., garantido que o container não enxergue os processos do host e vice-versa.
-
-Cgroup -> Cgroups são basicamente a tecnologia que nos permite definir limites de uso de recursos em processos Linux. Basicamente, você usa cgroups para controlar quanto de um determinado recurso-chave (CPU, memória, rede e I/O de disco)
-
-
-Comandos:
-
-- `docker container ls` / `docker ps` : lista os containers em execução com suas respectivas informações
-
-- `docker logs -f <container ID> ` : exibirá os logs de forma simultânea 
-
-- `docker stop <container ID{4}> ` : irá stopar a execução da imagem container. Basta inserir os 4 primeiros digitos do ID.
-
-- `docker ps -a` : irá listar todas as imagens containers em execução ou não.
-
-- `docker start ID{4}` : irá startar uma imagem container. Basta inserir os 4 primeiros digitos do ID.
-
-- `docker container exec -it {ID}` + comando : o `exec` adentrará/executar algo em determinado container, `i` significa modo interativo, `t` por terminal 
-
-- `docker run -d -p 80:80 docker/getting-started` :  irá rodar em determinada porta, porém em modo background
-
-- `docker run -ti -p 80:80 docker/getting-started` :  irá rodar em determinada porta, porém em terminal e interativo, ou seja tudo que acontecer no container, será exibido no terminal de forma simultanea.  Ao clicar `CTRL + D` o container será morto.
-
-O `Dockerfile` é um meio que utilizamos para criar nossas próprias imagens. Em outras palavras, ele serve como a receita para construir um container, permitindo definir um ambiente personalizado e próprio para meu projeto pessoal ou empresarial.
+If you have ideas on how to make the tutorial better or want to suggest adding new content, please open an 
+issue first before working on your idea. While we love input, we want to keep the tutorial scoped to new-comers.
+As such, we may reject ideas for more advanced requests and don't want you to lose any work you might
+have done. So, ask first and we'll gladly hear your thoughts!
