@@ -46,4 +46,4 @@ Comandos:
 
 - `docker run -ti -p 80:80 docker/getting-started` :  irá rodar em determinada porta, porém em terminal e interativo, ou seja tudo que acontecer no container, será exibido no terminal de forma simultanea.  Ao clicar `CTRL + D` o container será morto.
 
-
+O `Dockerfile` é um meio que utilizamos para criar nossas próprias imagens. Em outras palavras, ele serve como a receita para construir um container, permitindo definir um ambiente personalizado e próprio para meu projeto pessoal ou empresarial.
