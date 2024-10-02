@@ -1,5 +1,4 @@
 ## ESTUDO's DOCKER
-
 CONTAINER VIERÃO PARA MELHORAR A PERFORMACE DE UMA ERA QUE ATÉ ENTÃO AS APP ERAM TUDO DIVIDIDO EM SERVIDORES FISICOS
 
 
@@ -99,3 +98,17 @@ Quando não acha a imagem no caminho local vai buscar no docker hub / docker sto
    ⬆⬆⬆
 
    Com `-p` defini-se uma porta especifica para rodar o container
+
+
+   ![alt text](image-20.png)
+
+   ⬆⬆⬆ 
+   lista apenas os ID's
+
+   ![alt text](image-21.png)
+
+   ⬆⬆⬆ 
+   stop em todos od ID's que fora retornado
+
+   `docker rmi $(docker images -a -q)`
+    remover todas a imagens locais
