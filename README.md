@@ -1,4 +1,4 @@
-## ESTUDO DOCKER - 10/2024
+## ESTUDO's DOCKER
 
 CONTAINER VIERÃO PARA MELHORAR A PERFORMACE DE UMA ERA QUE ATÉ ENTÃO AS APP ERAM TUDO DIVIDIDO EM SERVIDORES FISICOS
 
@@ -69,4 +69,33 @@ Quando não acha a imagem no caminho local vai buscar no docker hub / docker sto
 
  ![alt text](image-14.png)
 
- ⬆⬆⬆  Por default demora-se 10s para stoppar um container, da forma feita acima, é inserido o tempo para quando dará o stop
+ ⬆⬆⬆ 
+  Por default demora-se 10s para stoppar um container, da forma feita acima, é inserido o tempo para quando dará o stop
+
+
+ ![alt text](image-15.png)
+
+  ⬆⬆⬆ 
+  `-d` para rodar o container e não ficar atrelado ao terminal
+  `-P` para ter acesso as porta do container
+
+
+  ![alt text](image-16.png)
+
+   ⬆⬆⬆ 
+
+   `docker port {container_ID}` - para lista as porta usadas por aquele container_ID
+
+
+   ![alt text](image-18.png)
+
+   
+   ⬆⬆⬆ 
+
+   Dando um alias para o container, dessa forma a manipulação pode ser feita por ela, ao inves do ID
+
+   ![alt text](image-19.png) 
+
+   ⬆⬆⬆
+
+   Com `-p` defini-se uma porta especifica para rodar o container
