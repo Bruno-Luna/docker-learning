@@ -1,44 +1,72 @@
-# Docker Getting Started Tutorial
+## ESTUDO DOCKER - 01/10/2024
 
-This tutorial was written with the intent of helping folks get up and running
-with containers and is designed to work with Docker Desktop. While not going too much 
-into depth, it covers the following topics:
+CONTAINER VIERÃO PARA MELHORAR A PERFORMACE DE UMA ERA QUE ATÉ ENTÃO AS APP ERAM TUDO DIVIDIDO EM SERVIDORES FISICOS
 
-- Running your first container
-- Building containers
-- Learning what containers are
-- Running and removing containers
-- Using volumes to persist data
-- Using bind mounts to support development
-- Using container networking to support multi-container applications
-- Using Docker Compose to simplify the definition and sharing of applications
-- Using image layer caching to speed up builds and reduce push/pull size
-- Using multi-stage builds to separate build-time and runtime dependencies
 
-## Getting Started
+![CONTAINER](image.png)
 
-If you wish to run the tutorial, you can use the following command after installing Docker Desktop:
+- UM CONTAINER É MUITO MAIS LEVE QUE UM VM;
+- NÃO TEM CUSTOS DE MANTTER MULTIPLOS S.O;
+- MAIS RÁPIDO DE SUBIR CONTAINER
+VARIAS APP DIVIDIDAS EM UM UNICO SO, HD, RAM ETC;
+- COM A UTILIZAÇÃO DO CONTAINER CONSEGUIMOS LIMITAR A QTDE DE RAM, CPU QUE CADA UM TERÁ, DA MESMA FORMA QUE OS APP
 
-```bash
-docker run -d -p 80:80 docker/getting-started
-```
+![alt text](image-3.png)
 
-Once it has started, you can open your browser to [http://localhost](http://localhost).
 
-## Development
+![alt text](image-2.png)
 
-This project has a `docker-compose.yml` file, which will start the mkdocs application on your
-local machine and help you see changes instantly.
+![alt text](image-4.png)
 
-```bash
-docker compose up
-```
+![alt text](image-5.png)
 
-## Contributing
+![alt text](image-6.png)
 
-If you find typos or other issues with the tutorial, feel free to create a PR and suggest fixes!
+![alt text](image-7.png)
 
-If you have ideas on how to make the tutorial better or want to suggest adding new content, please open an 
-issue first before working on your idea. While we love input, we want to keep the tutorial scoped to new-comers.
-As such, we may reject ideas for more advanced requests and don't want you to lose any work you might
-have done. So, ask first and we'll gladly hear your thoughts!
+![hello-world-docker](image-8.png)
+
+![alt text](image-9.png) 
+
+⬆⬆⬆ 
+
+Quando não acha a imagem no caminho local vai buscar no docker hub / docker store
+
+![alt text](image-11.png)
+⬆⬆⬆ 
+
+`docker ps` lista tudo que está em execução 
+
+`docker ps -a` lista tudo
+
+`docker start {container_ID}` start em um container
+
+`docker stop {container_ID}` para um container em execução
+
+
+![alt text](image-12.png)
+
+⬆⬆⬆
+
+`docker rm {container_ID}` para um remover um container sem execução
+
+⬆⬆⬆
+
+`docker container prune` para um remover todos os container sem execução
+
+
+`docker images` lista todas as images que possue
+
+`docker rmi {nome_image}` para um remover uma imagem
+
+![alt text](image-13.png)
+
+⬆⬆⬆ 
+
+ a cada container criado existem as camadas, as mais profundas e as mais finas.
+ Só é possiveis ler e escrever nas camadas Layer. Nas camadas raiz não é possivel alterar nada
+
+
+ ![alt text](image-14.png)
+
+ ⬆⬆⬆  Por default demora-se 10s para stoppar um container, da forma feita acima, é inserido o tempo para quando dará o stop
