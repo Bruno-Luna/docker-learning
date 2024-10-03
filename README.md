@@ -110,5 +110,26 @@ Quando não acha a imagem no caminho local vai buscar no docker hub / docker sto
    ⬆⬆⬆ 
    stop em todos od ID's que fora retornado
 
+
+
    `docker rmi $(docker images -a -q)`
     remover todas a imagens locais
+
+
+    ![alt text](image-22.png)
+
+    os container são volateis, é possivel subir, pausar e matar um container a qualquer momento
+
+
+## Volumes
+
+
+Os volumes servem para armazenar, persistir os dados da minha aplicação/dados,
+dessa forma um armazenamento do container é criado no docker HOST
+
+
+![alt text](image-23.png)
+
+`-it` -> ter um terminal interativo
+`-v` -> criar um volume
+":" -> significa o elo de apontamento entre o container local e o docker hub 
