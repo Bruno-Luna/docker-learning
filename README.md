@@ -31,7 +31,9 @@ Comandos:
 
     docker container ls / docker ps : lista os containers em execução com suas respectivas informações
 
-    docker logs -f <container ID> : exibirá os logs de forma simultânea
+    docker logs <container ID> : exibirá os logs não em tempo real
+
+    docker logs -f <container ID> : exibirá os logs  em tempo real
 
     docker stop <container ID{4}> : irá stopar a execução da imagem container. Basta inserir os 4 primeiros digitos do ID.
 
@@ -76,10 +78,12 @@ dá uma nome para imagem e não será um nome aleatório
 
 `docker start` startar um container já existente
 
-`docker start {container_ID}` start em um container já existente
+`docker start {container_ID}` start em um container já existente (já roda em modo detach `-d`)
 
 `docker stop {container_ID}` para um container em execução
 
+
+`docker exec -it {container_ID} + {comando}` roda um comando em um container que já esteja em execução
 
 
 `docker rm {container_ID} ou {container_name}` para remover um container sem execução
