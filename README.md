@@ -183,3 +183,23 @@ arquivo criado no container apontando do docker hub para a area de trabalho loca
 ![alt text](image-25.png)
  ⬆⬆⬆ 
 Escrita no arquivo
+
+
+`docker run -d -p 8080:80 --name servidor nginx`
+
+`docker run` → inicia um novo contêiner a partir de uma imagem.
+
+`-d` (detached) → executa o contêiner em segundo plano, sem travar o terminal.
+
+`-p 8080:80` → faz o mapeamento de portas:
+
+`8080` é a porta da máquina host (seu computador).
+
+`80` é a porta interna do contêiner (onde o Nginx escuta por padrão). Como o container roda isolado pode haver mais aplicações na mesma porta
+80 rodando simultaneamente.
+
+Assim, ao acessar http://localhost:8080, você chega no servidor Nginx dentro do contêiner.
+
+`--name servidor` → dá um nome personalizado ao contêiner, neste caso servidor. Isso facilita comandos futuros como docker stop servidor ou docker logs servidor.
+
+nginx → é a imagem usada. Se não estiver disponível localmente, o Docker baixa a versão mais recente do Nginx do Docker Hub.
