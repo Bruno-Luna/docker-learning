@@ -185,6 +185,7 @@ arquivo criado no container apontando do docker hub para a area de trabalho loca
 Escrita no arquivo
 
 
+
 `docker run -d -p 8080:80 --name servidor nginx`
 
 `docker run` → inicia um novo contêiner a partir de uma imagem.
@@ -203,3 +204,8 @@ Assim, ao acessar http://localhost:8080, você chega no servidor Nginx dentro do
 `--name servidor` → dá um nome personalizado ao contêiner, neste caso servidor. Isso facilita comandos futuros como docker stop servidor ou docker logs servidor.
 
 nginx → é a imagem usada. Se não estiver disponível localmente, o Docker baixa a versão mais recente do Nginx do Docker Hub.
+
+
+TAG das images
+`docker pull python:{tag}` / `docker pull python:3.8.20`
+o pull apenas baixa a imagem, o run se não tiver baixar a imagem e cria o container
