@@ -209,3 +209,27 @@ nginx → é a imagem usada. Se não estiver disponível localmente, o Docker ba
 TAG das images
 `docker pull python:{tag}` / `docker pull python:3.8.20`
 o pull apenas baixa a imagem, o run se não tiver baixar a imagem e cria o container
+
+Dockerfile
+O `Dockerfile` é um script que descreve como construir a imagem Docker da sua aplicação.
+Ele contém instruções passo a passo que o Docker executa durante o `docker build`.
+
+Docker build
+docker build -t minhaimagem:1.0 .
+
+`docker build` → instrução para o Docker criar uma nova imagem a partir de um Dockerfile.
+
+`-t minhaimagem:1.0` → define o nome e a tag da imagem:
+
+`minhaimagem` → nome da imagem.
+
+`1.0` → versão/tag da imagem (pode ser qualquer string, mas é comum usar números de versão).
+
+`.` → indica o contexto de build, ou seja, a pasta atual.
+O Docker vai procurar um arquivo chamado Dockerfile dentro dessa pasta e usar os arquivos disponíveis ali para montar a imagem.
+
+
+.dockerignore
+O .dockerignore funciona como o .gitignore: define quais arquivos/pastas não devem ser enviados para o contexto de build.
+Isso evita que o Docker copie coisas desnecessárias para dentro da imagem, deixando o build mais rápido e a imagem 
+mais leve.
