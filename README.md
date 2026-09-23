@@ -215,7 +215,7 @@ O `Dockerfile` é um script que descreve como construir a imagem Docker da sua a
 Ele contém instruções passo a passo que o Docker executa durante o `docker build`.
 
 Docker build
-docker build -t minhaimagem:1.0 .
+`docker build -t minhaimagem:1.0 .`
 
 `docker build` → instrução para o Docker criar uma nova imagem a partir de um Dockerfile.
 
@@ -233,3 +233,23 @@ O Docker vai procurar um arquivo chamado Dockerfile dentro dessa pasta e usar os
 O .dockerignore funciona como o .gitignore: define quais arquivos/pastas não devem ser enviados para o contexto de build.
 Isso evita que o Docker copie coisas desnecessárias para dentro da imagem, deixando o build mais rápido e a imagem 
 mais leve.
+
+
+# Imagem base
+FROM openjdk:17-jdk-slim
+
+# Diretório de trabalho dentro do container
+WORKDIR /app
+(cria o diretório caso não exista e entra nela)
+
+# Copiar o JAR gerado para dentro do container
+COPY target/minhaaplicacao.jar app.jar
+
+# Comando padrão ao iniciar o container
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+RUN do Dockerfile vs RUN do Terminal
+
+RUN no Dockerfile = prepara a imagem, instala dependências, configura ambiente.
+
+docker run no terminal = cria e executa um container a partir da imagem pronta, rodando o comando que você indicar.
