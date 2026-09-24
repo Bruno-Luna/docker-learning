@@ -253,3 +253,95 @@ RUN do Dockerfile vs RUN do Terminal
 RUN no Dockerfile = prepara a imagem, instala dependências, configura ambiente.
 
 docker run no terminal = cria e executa um container a partir da imagem pronta, rodando o comando que você indicar.
+
+
+# 🐳 Dockerfile: CMD vs ENTRYPOINT
+
+## 📌 Exemplos
+
+### 1. Usando **CMD**
+```dockerfile
+FROM ubuntu:latest
+CMD [ "echo", "olá, sou o comando CMD" ]
+
+Executa o comando definido em CMD quando o container inicia.
+
+Resultado: imprime olá, sou o comando CMD.
+
+2. Usando ENTRYPOINT
+
+FROM ubuntu:latest
+ENTRYPOINT [ "echo", "olá, sou o comando ENTRYPOINT" ]
+
+Define o processo principal do container.
+
+Resultado imprime: olá, sou o comando ENTRYPOINT.
+
+3. Combinando ENTRYPOINT e CMD
+
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y uputils-ping
+ENTRYPOINT [ "ping", "-c", "3" ]
+CMD [ "google.com" ]
+
+`
+ENTRYPOINT fixa o comando ping -c 3.
+CMD fornece o argumento padrão (google.com).
+Resultado: executa ping -c 3 google.com.
+`
+
+Vamos destrinchar essa imagem de forma bem didática, como se fosse uma aula para quem nunca viu Docker, usando a analogia da **“cebola cheia de camadas”**:
+
+---
+
+## 🌰 Docker como uma cebola
+Imagine uma cebola: ela tem várias camadas externas, e no centro você pode escrever ou modificar coisas.  
+O Docker funciona parecido: cada imagem é formada por **camadas de leitura (read-only)**, e quando você cria um container, ele ganha uma **camada de escrita (read-write)** por cima.
+
+---
+
+## 🔵 Camadas da Imagem (Read-Only)
+Essas são as partes “blindadas” da cebola, que não mudam:
+- **Ubuntu Base OS** → a camada mais de baixo, como o “solo” da cebola. É o sistema operacional mínimo.  
+- **Nginx Web Server** → outra camada adicionada em cima, trazendo o servidor web.  
+- **Application Libraries & Configs** → mais uma camada, com bibliotecas e configurações da sua aplicação.  
+
+Essas camadas são **imutáveis**: você não altera diretamente. Elas são reaproveitadas entre containers, o que torna o Docker eficiente.
+
+---
+
+## 🟠 Camada do Container (Read-Write)
+Quando você roda um container, o Docker coloca uma camada **volátil** em cima da imagem:
+- Essa camada é **gravável**: você pode criar arquivos, alterar configs, salvar dados temporários.  
+- Mas ela **não é persistente**: se você apagar o container (`docker rm`), tudo que estava nessa camada se perde.  
+- É como escrever com lápis em cima da cebola: funciona enquanto ela existe, mas se você jogar fora, os rabiscos somem.
+
+---
+
+## 🚦 O que acontece nos comandos
+- **`docker stop`** → o container é “guardado na garagem”. Ele para de rodar, mas a camada de escrita continua lá. Se você iniciar de novo, os dados ainda estão lá.  
+- **`docker rm`** → o container é destruído. A camada de escrita vai embora, e você perde os dados que estavam nela.  
+
+Por isso a imagem mostra: **dados gravados na camada do container são voláteis**.
+
+---
+
+## 📦 Exemplo prático
+1. Você cria uma imagem com:
+   - Ubuntu (base)
+   - Nginx (servidor)
+   - Configuração da sua aplicação
+2. Roda um container dessa imagem.
+3. Dentro do container, você cria um arquivo `teste.txt`.  
+   → Esse arquivo está na camada de escrita.  
+4. Se você parar o container (`docker stop`), o arquivo continua lá.  
+5. Se você remover o container (`docker rm`), o arquivo desaparece, porque estava só na camada volátil.
+
+---
+
+## 💡 Moral da história
+- **Imagem = cebola com camadas blindadas (read-only)**.  
+- **Container = imagem + uma camada volátil de escrita**.  
+- Se você quer **persistir dados**, precisa usar **volumes** ou **bind mounts**, que ficam fora da cebola e não se perdem quando o container é destruído.
+
+---
