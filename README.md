@@ -260,7 +260,7 @@ docker run no terminal = cria e executa um container a partir da imagem pronta, 
 ## 📌 Exemplos
 
 ### 1. Usando **CMD**
-dockerfile
+```dockerfile
 FROM ubuntu:latest
 CMD [ "echo", "olá, sou o comando CMD" ]
 
@@ -345,3 +345,51 @@ Por isso a imagem mostra: **dados gravados na camada do container são voláteis
 - Se você quer **persistir dados**, precisa usar **volumes** ou **bind mounts**, que ficam fora da cebola e não se perdem quando o container é destruído.
 
 ---
+
+📂 Bind Mounts
+É como “plugar” uma pasta do seu computador diretamente dentro do container.
+
+O container enxerga e usa os arquivos exatamente como estão no host.
+
+Se você alterar algo no host, muda dentro do container; se alterar dentro do container, muda no host.
+
+Exemplo prático:
+`docker run -v /home/bruno/projetos:/app ubuntu`
+
+👉 Bom para desenvolvimento, porque você edita no host e o container já vê as mudanças.
+
+
+📦 Volumes
+São áreas de armazenamento gerenciadas pelo Docker.
+
+Diferente do bind mount, não ficam ligadas a uma pasta específica do host — o Docker cuida de onde salvar.
+
+Persistem mesmo que o container seja apagado.
+
+Exemplo prático:
+`docker run -v meuvolume:/app/data ubuntu`
+
+O Docker cria (ou usa) um volume chamado meuvolume e monta em /app/data.
+
+👉 Ideal para produção, porque é mais seguro e portátil. Você não precisa se preocupar com caminhos do host.
+
+⚡ Tmpfs
+É um sistema de arquivos na memória RAM.
+
+Super rápido, mas volátil: os dados somem quando o container para.
+
+Não grava nada em disco.
+
+Exemplo prático:
+`docker run --tmpfs /app/cache ubuntu`
+O container terá /app/cache como uma pasta só na memória.
+
+👉 Útil para dados temporários, cache ou informações sensíveis que não devem ir para disco.
+
+💡 Pensando na analogia da cebola que vimos antes:
+
+`Bind Mount` → você abre a cebola e cola uma pasta externa nela.
+
+`Volume` → você dá à cebola um “bolsinho” próprio que o Docker guarda para ela.
+
+`Tmpfs` → você escreve na casca da cebola com giz, mas apaga quando ela sai da mesa.
