@@ -260,7 +260,7 @@ docker run no terminal = cria e executa um container a partir da imagem pronta, 
 ## 📌 Exemplos
 
 ### 1. Usando **CMD**
-```dockerfile
+dockerfile
 FROM ubuntu:latest
 CMD [ "echo", "olá, sou o comando CMD" ]
 
