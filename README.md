@@ -393,3 +393,33 @@ O container terá /app/cache como uma pasta só na memória.
 `Volume` → você dá à cebola um “bolsinho” próprio que o Docker guarda para ela.
 
 `Tmpfs` → você escreve na casca da cebola com giz, mas apaga quando ela sai da mesa.
+
+
+`docker run -d -p 8080:80 -v meu-volume:/usr/share/nginx/html nginx`
+
+docker run → cria e inicia um novo container.
+
+-d → roda em modo detached (em segundo plano).
+
+-p 8080:80 → mapeia a porta 80 do container (onde o Nginx escuta) para a porta 8080 do host. Assim você acessa em http://localhost:8080.
+
+-v meu-volume:/usr/share/nginx/html → monta um volume Docker chamado meu-volume na pasta /usr/share/nginx/html dentro do container.
+
+Essa pasta é onde o Nginx serve os arquivos estáticos (HTML, CSS, JS).
+
+O volume garante persistência: mesmo que o container seja apagado, os arquivos continuam salvos.
+
+nginx → usa a imagem oficial do Nginx.
+
+Resultado: você tem um servidor Nginx rodando, servindo arquivos que ficam armazenados no volume meu-volume.
+
+
+`docker cp . site:/usr/share/nginx/html`
+
+docker cp → copia arquivos entre o host e um container.
+
+. → indica a pasta atual do host (todos os arquivos dentro dela).
+
+site:/usr/share/nginx/html → copia os arquivos para dentro do container chamado site, na pasta /usr/share/nginx/html.
+
+Resultado: os arquivos da sua pasta local são enviados para dentro do container, substituindo ou adicionando conteúdo ao diretório que o Nginx usa para servir páginas.
