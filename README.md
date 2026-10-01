@@ -260,7 +260,7 @@ docker run no terminal = cria e executa um container a partir da imagem pronta, 
 ## 📌 Exemplos
 
 ### 1. Usando **CMD**
-```dockerfile
+dockerfile
 FROM ubuntu:latest
 CMD [ "echo", "olá, sou o comando CMD" ]
 
@@ -423,3 +423,80 @@ docker cp → copia arquivos entre o host e um container.
 site:/usr/share/nginx/html → copia os arquivos para dentro do container chamado site, na pasta /usr/share/nginx/html.
 
 Resultado: os arquivos da sua pasta local são enviados para dentro do container, substituindo ou adicionando conteúdo ao diretório que o Nginx usa para servir páginas.
+
+
+🔹 1. Criação de container com volume (Nginx)
+O comando:
+
+bash
+docker run -d -p 8080:80 -v newvolume:/usr/share/nginx/html --name site nginx
+-d: executa o container em segundo plano.
+
+-p 8080:80: mapeia a porta 8080 do host para a porta 80 do container.
+
+-v newvolume:/usr/share/nginx/html: cria e monta um volume chamado newvolume na pasta onde o Nginx serve os arquivos.
+
+--name site: dá o nome site ao container.
+👉 Isso permite que os arquivos do site fiquem salvos no volume, mesmo se o container for removido.
+
+🔹 2. Copiando arquivos para o container
+bash
+docker cp . site:/usr/share/nginx/html
+Copia os arquivos do diretório atual (.) para dentro do container site, na pasta onde o Nginx lê o conteúdo.
+
+Assim, o site pode ser acessado via navegador em localhost:8080.
+
+🔹 3. Criação de container MySQL
+bash
+docker run -d --name mysql-teste -e MYSQL_ROOT_PASSWORD=123 mysql
+-e MYSQL_ROOT_PASSWORD=123: define a senha do usuário root.
+
+Cria um container com o banco de dados MySQL rodando internamente.
+👉 O banco fica ativo e pode ser acessado com docker exec -it mysql-teste mysql -p.
+
+🔹 4. Interagindo com o MySQL
+Dentro do container:
+
+sql
+create database dbf;
+use dbf;
+create table alunos (nome varchar(50));
+insert into alunos values ('Bruno');
+select * from alunos;
+Esses comandos criam um banco, uma tabela e inserem dados.
+✅ Resultado: o registro “Bruno” aparece na consulta.
+
+🔹 5. Persistência de dados com volumes
+Para manter os dados mesmo após remover o container:
+
+bash
+docker run -d --name mysql-pro -e MYSQL_ROOT_PASSWORD=123 -v meus_dados:/var/lib/mysql mysql
+O volume meus_dados guarda os arquivos do banco.
+
+Mesmo que o container seja apagado, os dados continuam salvos no volume.
+
+🔹 6. Limpeza e gerenciamento
+Listar volumes:
+
+bash
+docker volume ls
+Remover container:
+
+bash
+docker rm -f nome_do_container
+Remover volumes não usados:
+
+bash
+docker volume prune
+👉 Isso ajuda a liberar espaço e manter o ambiente organizado.
+
+💡 Conclusão
+Esses comandos mostram como:
+
+Criar containers com volumes persistentes.
+
+Copiar arquivos para dentro de containers.
+
+Trabalhar com bancos de dados MySQL dentro do Docker.
+
+Garantir que os dados não se percam ao remover containers.
